@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html class="maher-loading" lang="ar" dir="rtl" data-i18n-doc-title="page.courses.docTitle">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="preconnect" href="https://jgvfcievyfkyldryatlk.supabase.co" crossorigin />
+    <link rel="dns-prefetch" href="https://jgvfcievyfkyldryatlk.supabase.co" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>الدورات التدريبية | أكاديمية ماهر</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-inner">
+            <div class="header-main-group">
+                <a href="index.html" class="logo">
+                    <img src="assets/images/sh.png" alt="شعار الأكاديمية" class="logo-img">
+                </a>
+                <nav class="main-nav" id="mainNav">
+                    <a href="index.html" class="nav-link" data-i18n="nav.home"></a>
+                    <a href="courses.html" class="nav-link" data-i18n="nav.catalog"></a>
+                    <a href="training-paths.html" class="nav-link" data-i18n="nav.trainingPaths"></a>
+                    <a href="about-academy.html" class="nav-link" data-i18n="nav.aboutAcademy"></a>
+                    <a href="login.html" class="nav-link" data-i18n="nav.login"></a>
+                </nav>
+            </div>
+
+            <div class="lang-switch">
+                <button class="lang-btn" data-lang="ar" data-i18n="header.langAr">العربية</button>
+                <button class="lang-btn" data-lang="en" data-i18n="header.langEn">English</button>
+            </div>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Courses Hero -->
+        <section class="courses-hero">
+            <div class="container ch-inner">
+                <span class="ch-badge" data-i18n="courses.hero.badge">🎓 أكاديمية ماهر للتدريب</span>
+                <h1 class="ch-title" data-i18n="courses.hero.h1">الدورات <em class="ch-accent">التدريبية</em></h1>
+                <p class="ch-sub" data-i18n="courses.page.subtitle">طوّر مهاراتك مع دورات مختارة بعناية من أكاديمية ماهر</p>
+                <div class="ch-search-wrap">
+                    <svg class="ch-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                    <input class="ch-search-input" id="courseSearchInput" type="search" autocomplete="off"
+                           data-i18n-placeholder="courses.search.placeholder"
+                           placeholder="ابحث عن دورة تدريبية..." />
+                </div>
+                <div class="ch-tabs" id="categoryTabs">
+                    <button class="ch-tab ch-tab-active" data-cat="" data-i18n="courses.filter.all">الكل</button>
+                </div>
+                <div id="coursesPathBanner" class="courses-path-banner" style="display:none;" aria-live="polite"></div>
+            </div>
+        </section>
+
+        <!-- Courses Grid -->
+        <section class="section">
+            <div class="container">
+                <div class="ch-results-bar" id="coursesResultsBar" style="display:none;">
+                    <span class="ch-results-txt" id="coursesResultsTxt"></span>
+                </div>
+                <div id="coursesMsg" class="section-intro" style="text-align:center;padding:2rem 0;display:none;"></div>
+                <div id="coursesGrid" class="courses-grid"></div>
+                <div id="coursesLoadMoreWrap" class="courses-load-more-wrap" style="display:none;">
+                    <p id="coursesShowingTxt" class="courses-showing-txt"></p>
+                    <button type="button" id="coursesLoadMoreBtn" class="btn btn-primary btn-lg courses-load-more-btn" data-i18n="courses.loadMore">أظهر المزيد</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enroll Modal -->
+        <div id="enrollModal" class="modal-overlay" style="display:none;">
+            <div class="modal-box modal-box-premium">
+                <span class="modal-icon">✨</span>
+                <h3 id="enrollModalTitle" class="modal-title"></h3>
+                <p id="enrollModalBody" class="modal-body"></p>
+                <div class="modal-actions">
+                    <button id="enrollConfirmBtn" class="btn btn-primary" data-i18n="courses.modal.confirm">تأكيد التسجيل</button>
+                    <button id="enrollCancelBtn" class="btn btn-outline" data-i18n="courses.modal.cancel">إلغاء</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="assets/images/sh.png" alt="شعار أكاديمية ماهر" class="footer-logo-img">
+                    <h3 class="footer-logo" data-i18n="footer.logo">أكاديمية ماهر</h3>
+                    <p class="footer-about" data-i18n="footer.about">أكاديمية عربية للتوظيف والتدريب وتطوير المهارات.</p>
+                    <a class="footer-site-link" href="https://www.maher.edu.sa" target="_blank" rel="noopener">🌐 www.maher.edu.sa</a>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-col-title" data-i18n="footer.quickLinks">روابط سريعة</h4>
+                    <div class="footer-links">
+                        <a href="courses.html" data-i18n="footer.catalog">الدورات</a>
+                        <a href="courses.html" data-i18n="footer.courses">الدورات</a>
+                        <a href="contact.html" data-i18n="footer.contact">تواصل معنا</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-col-title" data-i18n="footer.contact">تواصل معنا</h4>
+                    <ul class="footer-contact-list">
+                        <li>📞 <a href="tel:920016798">920016798</a> <span class="footer-contact-note" data-i18n="footer.landline">(أرضي)</span></li>
+                        <li>📞 <a href="tel:0539600050">0539600050</a></li>
+                        <li>📞 <a href="tel:0539600080">0539600080</a></li>
+                        <li>✉️ <a href="mailto:info@maher.edu.sa">info@maher.edu.sa</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span data-i18n="footer.copy">© <span id="year"></span> أكاديمية ماهر. جميع الحقوق محفوظة.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="assets/js/supabaseClient.js" defer></script>
+    <script src="assets/js/auth.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/training_paths_catalog.js" defer></script>
+    <script src="assets/js/courses_catalog.js" defer></script>
+    <script src="assets/js/course-images.js" defer></script>
+    <script src="assets/js/maher-cart.js" defer></script>
+    <script src="assets/js/course-interest.js" defer></script>
+    <script defer>
+    (function () {
+        var sb, currentUser, currentRole, pendingCourse;
+        var allCourses = [];
+        var enrolledIdsCache = [];
+        var activeCategory = "";
+        var activePathId = null;
+        var activePathName = "";
+        var PAGE_SIZE = 12;
+        var visibleCount = PAGE_SIZE;
+        var filteredCoursesCache = [];
+
+        function t(key) {
+            var lang = localStorage.getItem("maherLang") || "ar";
+            var dict = (window.maherTranslations || {})[lang] || (window.maherTranslations || {}).ar || {};
+            return dict[key] !== undefined ? dict[key] : key;
+        }
+
+        function esc(v) {
+            return String(v || "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+        }
+
+        function pathFromUrl() {
+            var raw = (new URLSearchParams(window.location.search).get("path") || "").trim();
+            return raw || null;
+        }
+
+        function getDefaultCoursesFiltered() {
+            var list = (window.maherDefaultCourses || []).slice();
+            if (activePathId) {
+                list = list.filter(function (c) { return c.training_path_id === activePathId; });
+            }
+            return list;
+        }
+
+        function applyCoursesFallbackIfNeeded(dbError) {
+            if (allCourses.length) return false;
+            var fallback = getDefaultCoursesFiltered();
+            if (!fallback.length) return false;
+            allCourses = fallback;
+            if (dbError) console.warn("courses: using local catalog fallback", dbError.message || dbError);
+            return true;
+        }
+
+        function showMsg(msg) {
+            var el = document.getElementById("coursesMsg");
+            var grid = document.getElementById("coursesGrid");
+            if (el) { el.textContent = msg; el.style.display = "block"; }
+            if (grid) grid.innerHTML = "";
+            filteredCoursesCache = [];
+            var bar = document.getElementById("coursesResultsBar");
+            if (bar) bar.style.display = "none";
+            var wrap = document.getElementById("coursesLoadMoreWrap");
+            if (wrap) wrap.style.display = "none";
+        }
+
+        function updatePathBanner() {
+            var wrap = document.getElementById("coursesPathBanner");
+            if (!wrap) return;
+            if (!activePathId || !activePathName) {
+                wrap.style.display = "none";
+                wrap.innerHTML = "";
+                return;
+            }
+            wrap.style.display = "flex";
+            wrap.innerHTML =
+                "<strong>" + esc(t("courses.pathBannerPrefix")) + "</strong> " + esc(activePathName) + " · " +
+                '<a class="courses-path-clear" href="courses.html">' + esc(t("courses.pathBannerClear")) + "</a>";
+        }
+
+        function clearDynamicTabs() {
+            var tabsEl = document.getElementById("categoryTabs");
+            if (!tabsEl) return;
+            tabsEl.querySelectorAll(".ch-tab:not([data-cat=''])").forEach(function (b) { b.remove(); });
+        }
+
+        function courseCoverUrl(c) {
+            if (typeof window.maherCourseImageUrl === "function") {
+                return window.maherCourseImageUrl(c.id, c.title);
+            }
+            return "assets/images/dorh/stock/stock_001.png";
+        }
+
+        function courseCoverOnError(img) {
+            img.onerror = null;
+            var title = img.getAttribute("data-title") || "";
+            if (typeof window.maherCourseImageUrl === "function") {
+                var alt = window.maherCourseImageUrl("", title);
+                if (alt && alt !== img.src) { img.src = alt; return; }
+            }
+            img.src = "assets/images/dorh/stock/stock_001.png";
+        }
+
+        function buildCategoryTabs(courses) {
+            var tabsEl = document.getElementById("categoryTabs");
+            if (!tabsEl) return;
+            clearDynamicTabs();
+            var cats = [];
+            courses.forEach(function (c) {
+                if (c.category && cats.indexOf(c.category) === -1) cats.push(c.category);
+            });
+            cats.forEach(function (cat) {
+                var btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "ch-tab";
+                btn.setAttribute("data-cat", cat);
+                btn.textContent = cat;
+                btn.addEventListener("click", function () {
+                    activeCategory = cat;
+                    tabsEl.querySelectorAll(".ch-tab").forEach(function (b) { b.classList.remove("ch-tab-active"); });
+                    btn.classList.add("ch-tab-active");
+                    applyFilter();
+                });
+                tabsEl.appendChild(btn);
+            });
+            var allTab = tabsEl.querySelector("[data-cat='']");
+            if (allTab) {
+                allTab.onclick = function () {
+                    activeCategory = "";
+                    tabsEl.querySelectorAll(".ch-tab").forEach(function (b) { b.classList.remove("ch-tab-active"); });
+                    allTab.classList.add("ch-tab-active");
+                    applyFilter();
+                };
+            }
+        }
+
+        function applyFilter() {
+            var input = document.getElementById("courseSearchInput");
+            var term = input ? input.value.trim().toLowerCase() : "";
+            var filtered = allCourses.filter(function (c) {
+                var matchCat = !activeCategory || c.category === activeCategory;
+                var matchSearch = !term ||
+                    (c.title && c.title.toLowerCase().includes(term)) ||
+                    (c.description && c.description.toLowerCase().includes(term)) ||
+                    (c.instructor && c.instructor.toLowerCase().includes(term)) ||
+                    (c.category && c.category.toLowerCase().includes(term));
+                return matchCat && matchSearch;
+            });
+            renderGrid(filtered, enrolledIdsCache, true);
+            updateResultsBar(filtered.length);
+        }
+
+        function updateResultsBar(count) {
+            var bar = document.getElementById("coursesResultsBar");
+            var txt = document.getElementById("coursesResultsTxt");
+            if (!bar || !txt) return;
+            if (!allCourses.length) { bar.style.display = "none"; return; }
+            bar.style.display = "block";
+            txt.innerHTML = '<span class="ch-results-num">' + count + "</span> " + t("courses.results.count");
+        }
+
+        function updateLoadMoreUi() {
+            var wrap = document.getElementById("coursesLoadMoreWrap");
+            var txt = document.getElementById("coursesShowingTxt");
+            var btn = document.getElementById("coursesLoadMoreBtn");
+            if (!wrap) return;
+            var total = filteredCoursesCache.length;
+            if (!total) {
+                wrap.style.display = "none";
+                return;
+            }
+            var shown = Math.min(visibleCount, total);
+            if (txt) {
+                txt.textContent = t("courses.showingOf")
+                    .replace("{shown}", String(shown))
+                    .replace("{total}", String(total));
+            }
+            if (shown < total) {
+                wrap.style.display = "flex";
+                if (btn) {
+                    btn.style.display = "";
+                    btn.disabled = false;
+                }
+            } else {
+                wrap.style.display = shown > PAGE_SIZE ? "flex" : "none";
+                if (btn) btn.style.display = "none";
+            }
+        }
+
+        function withStoredPrices(list) {
+            return window.maherCart ? window.maherCart.applyStoredPrices(list) : list;
+        }
+
+        function buildCourseCardHtml(c, enrolledIds) {
+                var isEnrolled = enrolledIds.indexOf(c.id) !== -1;
+                var paid = window.maherCart && window.maherCart.isPaidCourse(c);
+                var inCart = window.maherCart && window.maherCart.isInCart(c.id);
+                var seatsHtml = c.max_seats > 0
+                    ? '<span class="course-seats">' + t("courses.seatsLabel") + esc(String(c.max_seats)) + "</span>"
+                    : "";
+                var actionBtn = "";
+                var loginNext = paid ? "checkout.html" : ("job-details.html?course_id=" + encodeURIComponent(c.id));
+                if (!currentUser) {
+                    actionBtn = '<a href="login.html?next=' + encodeURIComponent(loginNext) + '" class="btn btn-outline btn-full">' +
+                        (paid ? t("courses.loginToBuy") : t("courses.loginToEnroll")) + "</a>";
+                } else if (currentRole !== "job_seeker") {
+                    actionBtn = '<button type="button" class="btn btn-outline btn-full" disabled>' + t("paths.enrollSeekerOnly") + "</button>";
+                } else if (isEnrolled) {
+                    actionBtn = '<button type="button" class="btn btn-enrolled btn-full" disabled>' + t("courses.enrolled") + "</button>";
+                } else if (paid) {
+                    if (inCart) {
+                        actionBtn = '<a href="checkout.html" class="btn btn-primary btn-full">' + t("courses.goCheckout") + "</a>";
+                    } else {
+                        actionBtn = '<button type="button" class="btn btn-primary btn-full cart-add-btn" data-id="' + esc(c.id) + '" data-title="' + esc(c.title) + '" data-price="' + esc(String(c.price_amount)) + '">' +
+                            t("courses.addToCart") + "</button>";
+                    }
+                } else {
+                    actionBtn = '<button type="button" class="btn btn-primary btn-full enroll-btn" data-id="' + esc(c.id) + '" data-title="' + esc(c.title) + '">' +
+                        t("courses.enrollBtn") + "</button>";
+                }
+                var detailHref = "job-details.html?course_id=" + encodeURIComponent(c.id);
+                var priceBadge = (c.price_type === "paid" && Number(c.price_amount) > 0)
+                    ? '<span class="course-badge course-badge--price">' + esc(String(c.price_amount)) + " " + t("paths.sar") + "</span>"
+                    : '<span class="course-badge course-badge--free">' + t("paths.free") + "</span>";
+                var diplomaBadge = (c.content_type === "diploma")
+                    ? '<span class="course-badge course-badge--diploma">' + t("paths.diploma") + "</span>"
+                    : "";
+
+                return '<article class="course-card">' +
+                    '<a class="course-card-media" href="' + detailHref + '" tabindex="-1" aria-hidden="true">' +
+                    '<img class="course-card-cover" src="' + esc(courseCoverUrl(c)) + '" data-title="' + esc(c.title) + '" alt="' + esc(c.title) + '" loading="lazy" decoding="async" onerror="courseCoverOnError(this)" />' +
+                    '<span class="course-card-media-overlay" aria-hidden="true"></span>' +
+                    '<span class="course-card-badges">' +
+                    (c.category ? '<span class="course-badge course-badge--cat">' + esc(c.category) + "</span>" : "") +
+                    priceBadge + diplomaBadge +
+                    "</span></a>" +
+                    '<div class="course-card-body">' +
+                    '<h3 class="course-card-title"><a class="course-card-title-link" href="' + detailHref + '">' + esc(c.title) + "</a></h3>" +
+                    (c.description ? '<p class="course-card-desc">' + esc(c.description) + "</p>" : "") +
+                    '<div class="course-card-meta">' +
+                    (c.instructor ? "<span>" + esc(t("courses.meta.instructor")) + ": " + esc(c.instructor) + "</span>" : "") +
+                    (c.duration ? "<span>⏱ " + esc(c.duration) + "</span>" : "") +
+                    seatsHtml +
+                    "</div></div>" +
+                    '<div class="course-card-footer">' +
+                    '<div class="course-card-actions">' +
+                    '<a href="' + detailHref + '" class="btn btn-primary btn-full">' + t("courses.openCourseEnroll") + "</a>" +
+                    actionBtn +
+                    (function () {
+                        var done = window.maherCourseInterest && window.maherCourseInterest.isInterested(c.id);
+                        return '<button type="button" class="btn btn-interest btn-full interest-btn' + (done ? " btn-interest-done" : "") + '" data-id="' + esc(c.id) + '" data-title="' + esc(c.title) + '"' + (done ? " disabled" : "") + ">" +
+                            esc(done ? t("courses.interest.done") : t("courses.interest.btn")) + "</button>";
+                    })() +
+                    "</div></div></article>";
+        }
+
+        function renderGrid(courses, enrolledIds, reset) {
+            var grid = document.getElementById("coursesGrid");
+            var msg = document.getElementById("coursesMsg");
+            if (!grid) return;
+
+            if (reset) {
+                visibleCount = PAGE_SIZE;
+                filteredCoursesCache = courses.slice();
+            }
+
+            if (!filteredCoursesCache.length) {
+                if (msg) { msg.textContent = t("courses.noAvailable"); msg.style.display = "block"; }
+                grid.innerHTML = "";
+                updateLoadMoreUi();
+                return;
+            }
+            if (msg) msg.style.display = "none";
+
+            var slice = filteredCoursesCache.slice(0, visibleCount);
+            grid.innerHTML = slice.map(function (c) {
+                return buildCourseCardHtml(c, enrolledIds);
+            }).join("");
+            updateLoadMoreUi();
+        }
+
+        function loadMoreCourses() {
+            var grid = document.getElementById("coursesGrid");
+            if (!grid || visibleCount >= filteredCoursesCache.length) return;
+            var prev = visibleCount;
+            visibleCount = Math.min(visibleCount + PAGE_SIZE, filteredCoursesCache.length);
+            var chunk = filteredCoursesCache.slice(prev, visibleCount);
+            grid.insertAdjacentHTML("beforeend", chunk.map(function (c) {
+                return buildCourseCardHtml(c, enrolledIdsCache);
+            }).join(""));
+            updateLoadMoreUi();
+        }
+
+        function tryOpenEnrollFromQuery() {
+            var want = new URLSearchParams(window.location.search).get("enroll");
+            if (!want) return;
+            if (!currentUser) {
+                window.location.replace("login.html?next=" + encodeURIComponent("job-details.html?course_id=" + want));
+                return;
+            }
+            if (currentRole !== "job_seeker") return;
+            var c = allCourses.find(function (x) { return x.id === want; });
+            if (!c) return;
+            window.location.replace("job-details.html?course_id=" + encodeURIComponent(want));
+        }
+
+        function resolvePathMeta(prow, pathErr) {
+            if (prow) {
+                if (!prow.is_active) {
+                    showMsg(t("courses.pathInactive"));
+                    updatePathBanner();
+                    return false;
+                }
+                activePathName = prow.name_ar || "";
+                return true;
+            }
+            if (!pathErr) {
+                var fp = (window.maherDefaultTrainingPaths || []).find(function (x) { return x.id === activePathId; });
+                if (fp) {
+                    activePathName = fp.name_ar || "";
+                    return true;
+                }
+            }
+            showMsg(t("courses.pathNotFound"));
+            updatePathBanner();
+            return false;
+        }
+
+        function withTimeout(promise, ms) {
+            return Promise.race([
+                promise,
+                new Promise(function (_, reject) {
+                    setTimeout(function () { reject(new Error("timeout")); }, ms);
+                })
+            ]);
+        }
+
+        function resolvePathNameFromCatalog() {
+            if (!activePathId) {
+                activePathName = "";
+                return true;
+            }
+            var fp = (window.maherDefaultTrainingPaths || []).find(function (x) { return x.id === activePathId; });
+            if (fp) {
+                activePathName = fp.name_ar || "";
+                return true;
+            }
+            activePathName = "";
+            return false;
+        }
+
+        function renderLocalCatalog() {
+            activePathId = pathFromUrl();
+            resolvePathNameFromCatalog();
+            updatePathBanner();
+            var fallback = getDefaultCoursesFiltered();
+            if (!fallback.length) return false;
+            allCourses = withStoredPrices(fallback);
+            buildCategoryTabs(allCourses);
+            renderGrid(allCourses, enrolledIdsCache, true);
+            updateResultsBar(allCourses.length);
+            var grid = document.getElementById("coursesGrid");
+            if (grid) delete grid.dataset.loading;
+            return true;
+        }
+
+        async function refreshCoursesFromDb() {
+            if (!sb) return;
+
+            var sel = "id, title, description, instructor, duration, category, max_seats, price_type, price_amount, content_type, training_path_id";
+            var courseQ = sb.from("courses").select(sel).eq("is_active", true);
+            if (activePathId) courseQ = courseQ.eq("training_path_id", activePathId);
+
+            try {
+                if (activePathId) {
+                    var pr = await withTimeout(
+                        sb.from("training_paths").select("id, name_ar, is_active").eq("id", activePathId).maybeSingle(),
+                        4000
+                    );
+                    if (!resolvePathMeta(pr.data, pr.error)) return;
+                }
+
+                var res = await withTimeout(courseQ.order("created_at", { ascending: false }), 5000);
+                if (!res.error && res.data && res.data.length) {
+                    allCourses = withStoredPrices(res.data);
+                } else if (res.error) {
+                    applyCoursesFallbackIfNeeded(res.error);
+                }
+            } catch (dbErr) {
+                console.warn("courses: DB slow or unavailable, using local catalog", dbErr);
+                applyCoursesFallbackIfNeeded(dbErr);
+            }
+
+            try {
+                var userRes = await withTimeout(sb.auth.getUser(), 3000);
+                currentUser = userRes.data && userRes.data.user ? userRes.data.user : null;
+            } catch (e) {
+                currentUser = null;
+            }
+            currentRole = "";
+            enrolledIdsCache = [];
+
+            if (currentUser) {
+                try {
+                    var profRes = await withTimeout(sb.from("profiles").select("role").eq("id", currentUser.id).maybeSingle(), 3000);
+                    currentRole = profRes.data ? profRes.data.role : "";
+                    if (currentRole === "super_admin") { window.location.href = "dashboard.html"; return; }
+                    if (currentRole === "job_seeker") {
+                        var enrRes = await withTimeout(sb.from("course_enrollments").select("course_id").eq("user_id", currentUser.id), 3000);
+                        enrolledIdsCache = (enrRes.data || []).map(function (e) { return e.course_id; });
+                    }
+                } catch (authErr) {
+                    console.warn("courses auth extras", authErr);
+                }
+            }
+
+            if (!allCourses.length) {
+                showMsg(t("courses.noAvailable"));
+                return;
+            }
+
+            updatePathBanner();
+            buildCategoryTabs(allCourses);
+            renderGrid(allCourses, enrolledIdsCache, true);
+            updateResultsBar(allCourses.length);
+            tryOpenEnrollFromQuery();
+            var si = document.getElementById("courseSearchInput");
+            if (si && si.value.trim()) applyFilter();
+        }
+
+        async function loadCourses() {
+            if (!renderLocalCatalog()) {
+                var grid = document.getElementById("coursesGrid");
+                if (grid) {
+                    grid.dataset.loading = "1";
+                    grid.innerHTML = '<p class="courses-grid-loading">' + esc(t("courses.loading")) + "</p>";
+                }
+            }
+            await refreshCoursesFromDb();
+        }
+
+        async function enroll(courseId) {
+            return await sb.from("course_enrollments").insert({
+                course_id: courseId,
+                user_id: currentUser.id,
+                enrolled_by: currentUser.id
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var grid = document.getElementById("coursesGrid");
+            if (grid && window.maherCourseInterest) {
+                window.maherCourseInterest.bindClickDelegation(grid);
+            }
+            document.addEventListener("maherInterestRegistered", function () {
+                if (allCourses.length) renderGrid(filteredCoursesCache.length ? filteredCoursesCache : allCourses, enrolledIdsCache, false);
+            });
+            if (grid) {
+                grid.addEventListener("click", function (e) {
+                    var cartBtn = e.target.closest(".cart-add-btn");
+                    if (cartBtn && window.maherCart) {
+                        var cid = cartBtn.getAttribute("data-id");
+                        var course = allCourses.find(function (x) { return x.id === cid; });
+                        if (!course) {
+                            course = {
+                                id: cid,
+                                title: cartBtn.getAttribute("data-title"),
+                                price_type: "paid",
+                                price_amount: Number(cartBtn.getAttribute("data-price")) || 0
+                            };
+                        }
+                        var added = window.maherCart.addToCart(course);
+                        if (added.ok) {
+                            cartBtn.outerHTML = '<a href="checkout.html" class="btn btn-primary btn-full">' + t("courses.goCheckout") + "</a>";
+                        } else if (added.reason === "exists") {
+                            cartBtn.outerHTML = '<a href="checkout.html" class="btn btn-primary btn-full">' + t("courses.goCheckout") + "</a>";
+                        }
+                        return;
+                    }
+                    var btn = e.target.closest(".enroll-btn");
+                    if (!btn) return;
+                    pendingCourse = { id: btn.getAttribute("data-id"), title: btn.getAttribute("data-title") };
+                    var modal = document.getElementById("enrollModal");
+                    var titleEl = document.getElementById("enrollModalTitle");
+                    var bodyEl = document.getElementById("enrollModalBody");
+                    if (titleEl) titleEl.textContent = pendingCourse.title;
+                    if (bodyEl) bodyEl.textContent = t("courses.modalBodySeeker");
+                    if (modal) modal.style.display = "flex";
+                });
+            }
+
+            function startCoursesPage() {
+                sb = window.supabaseClient || null;
+                var uq = new URLSearchParams(window.location.search).get("q");
+                var si0 = document.getElementById("courseSearchInput");
+                if (uq && si0) si0.value = uq;
+                loadCourses();
+            }
+            function afterInterestReady() {
+                if (window.maherCourseInterest) {
+                    window.maherCourseInterest.loadUserInterests().then(function () {
+                        if (allCourses.length) renderGrid(filteredCoursesCache.length ? filteredCoursesCache : allCourses, enrolledIdsCache, false);
+                    });
+                }
+            }
+            renderLocalCatalog();
+            if (window.supabaseClient) { startCoursesPage(); afterInterestReady(); }
+            else document.addEventListener("maherSupabaseReady", function () { startCoursesPage(); afterInterestReady(); }, { once: true });
+
+            var searchInput = document.getElementById("courseSearchInput");
+            if (searchInput) searchInput.addEventListener("input", function () { applyFilter(); });
+
+            var loadMoreBtn = document.getElementById("coursesLoadMoreBtn");
+            if (loadMoreBtn) loadMoreBtn.addEventListener("click", loadMoreCourses);
+
+            var cancelBtn = document.getElementById("enrollCancelBtn");
+            var modal = document.getElementById("enrollModal");
+            if (cancelBtn) cancelBtn.addEventListener("click", function () {
+                if (modal) modal.style.display = "none";
+                pendingCourse = null;
+            });
+
+            var confirmBtn = document.getElementById("enrollConfirmBtn");
+            if (confirmBtn) confirmBtn.addEventListener("click", async function () {
+                if (!pendingCourse) return;
+                confirmBtn.disabled = true;
+                confirmBtn.textContent = t("courses.enrolling");
+                var res = await enroll(pendingCourse.id);
+                if (modal) modal.style.display = "none";
+                confirmBtn.disabled = false;
+                if (typeof window.maherApplyLanguage === "function") {
+                    window.maherApplyLanguage(localStorage.getItem("maherLang") || "ar");
+                }
+                if (res.error && res.error.code !== "23505") {
+                    alert(t("courses.enrollError") + ": " + (res.error.message || ""));
+                } else {
+                    var enrolledBtn = document.querySelector('.enroll-btn[data-id="' + pendingCourse.id + '"]');
+                    if (enrolledBtn) {
+                        enrolledBtn.textContent = t("courses.enrolled");
+                        enrolledBtn.classList.remove("enroll-btn", "btn-primary");
+                        enrolledBtn.classList.add("btn-enrolled");
+                        enrolledBtn.disabled = true;
+                    }
+                    enrolledIdsCache.push(pendingCourse.id);
+                    try {
+                        var u = new URL(window.location.href);
+                        u.searchParams.delete("enroll");
+                        history.replaceState({}, "", u.pathname + (u.search ? u.search : ""));
+                    } catch (e2) {}
+                }
+                pendingCourse = null;
+            });
+
+            document.addEventListener("maherLangChanged", function () {
+                if (!allCourses.length) return;
+                updatePathBanner();
+                applyFilter();
+                updateResultsBar((function () {
+                    var input = document.getElementById("courseSearchInput");
+                    var term = input ? input.value.trim().toLowerCase() : "";
+                    return allCourses.filter(function (c) {
+                        var mc = !activeCategory || c.category === activeCategory;
+                        var ms = !term || [c.title, c.description, c.instructor, c.category].some(function (f) {
+                            return f && f.toLowerCase().includes(term);
+                        });
+                        return mc && ms;
+                    }).length;
+                })());
+            });
+        });
+    })();
+    </script>
+</body>
+</html>
+
